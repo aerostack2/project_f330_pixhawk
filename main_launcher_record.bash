@@ -52,11 +52,11 @@ new_window 'gates_to_waypoints' "ros2 launch gates_to_waypoints gates_to_waypoin
 new_window 'static_transform_publisher' "ros2 launch basic_tf_tree_generator basic_tf_tree_generator_launch.py \
     drone_id:=$drone_namespace "
 
-new-window  'realsense_interface' "ros2 launch realsense_interface realsense_interface_launch.py \
+new_window 'realsense_interface' "ros2 launch realsense_interface realsense_interface_launch.py \
     drone_id:=$drone_namespace"
 
 # TODO:Check rosbag recorder
-new-window 'record rosbag' "mkdir rosbags && cd rosbags &&\
+new_window 'record rosbag' "mkdir rosbags && cd rosbags &&\
     ros2 bag record \
     /$drone_namespace/self_localization/odom \
     /$drone_namespace/actuator_command/thrust \
