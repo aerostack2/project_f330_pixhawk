@@ -1,13 +1,15 @@
 #!/bin/bash
 
-DRONE_ID_NAMESPACE="drone0"
+drone_namespace="drone0"
 
 mkdir rosbags 
 cd rosbags &&\
 ros2 bag record \
-"/$DRONE_ID_NAMESPACE/self_localization/odom" \
-"/$DRONE_ID_NAMESPACE/actuator_command/thrust" \
-"/$DRONE_ID_NAMESPACE/actuator_command/twist" \
-"/$DRONE_ID_NAMESPACE/motion_reference/trajectory" \
-"/$DRONE_ID_NAMESPACE/image_raw" \
-"/$DRONE_ID_NAMESPACE/aruco_gate_detector/gate_img_topic" \
+"/$drone_namespace/self_localization/odom" \
+"/$drone_namespace/actuator_command/thrust" \
+"/$drone_namespace/actuator_command/twist" \
+"/$drone_namespace/motion_reference/trajectory" \
+"/$drone_namespace/image_raw" \
+"/$drone_namespace/aruco_gate_detector/gate_img_topic" 
+
+
