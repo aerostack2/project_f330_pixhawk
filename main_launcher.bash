@@ -28,11 +28,15 @@ function new_window() {
 
 new_window 'RTPS interface' "micrortps_agent  -d /dev/ttyUSB0 -n $drone_namespace"
 
-new_window 'pixhawk interface' "ros2 launch pixhawk_platform pixhawk_platform_launch.py \
+new_window 'pixhawk interface' "ros2 launch pixhawk_platform real.launch.py \
     drone_id:=$drone_namespace \
     mass:=$UAV_MASS \
     max_thrust:=$UAV_MAX_THRUST \
     simulation_mode:=false"
+
+new_window 'state_estimator' "ros2 launch basic_state_estimator basic_state_estimator_launch.py \
+    drone_id:=$drone_namespace \
+    odom_only:=true"
 
 new_window 'controller_manager' "ros2 launch controller_manager controller_manager_launch.py \
     drone_id:=$drone_namespace"
@@ -42,18 +46,6 @@ new_window 'trajectory_generator' "ros2 launch trajectory_generator trajectory_g
 
 new_window 'basic_behaviours' "ros2 launch as2_basic_behaviours all_basic_behaviours_launch.py \
     drone_id:=$drone_namespace "
-
-new_window 'aruco_gate_detector' "ros2 launch aruco_gate_detector aruco_gate_detector_real_launch.py \
-    drone_id:=$drone_namespace "
-
-new_window 'gates_to_waypoints' "ros2 launch gates_to_waypoints gates_to_waypoints_launch.py \
-    drone_id:=$drone_namespace "
-
-new_window 'static_transform_publisher' "ros2 launch basic_tf_tree_generator basic_tf_tree_generator_launch.py \
-    drone_id:=$drone_namespace "
-
-new_window  'realsense_interface' "ros2 launch realsense_interface realsense_interface_launch.py \
-    drone_id:=$drone_namespace"
 
 
 if [ -n "$TMUX" ]
