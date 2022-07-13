@@ -39,13 +39,15 @@ new_window 'state_estimator' "ros2 launch basic_state_estimator basic_state_esti
     odom_only:=true"
 
 new_window 'controller_manager' "ros2 launch controller_manager controller_manager_launch.py \
-    drone_id:=$drone_namespace"
+    drone_id:=$drone_namespace \
+    config:=controller_manager.yaml"
 
 new_window 'trajectory_generator' "ros2 launch trajectory_generator trajectory_generator_launch.py  \
     drone_id:=$drone_namespace "
 
 new_window 'basic_behaviours' "ros2 launch as2_basic_behaviours all_basic_behaviours_launch.py \
-    drone_id:=$drone_namespace "
+    drone_id:=$drone_namespace \
+    goto_config:=goto.yaml"
 
 
 if [ -n "$TMUX" ]
