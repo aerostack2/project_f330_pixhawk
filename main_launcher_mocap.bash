@@ -12,9 +12,8 @@ new_window 'pixhawk interface' "ros2 launch pixhawk_platform pixhawk_platform_la
     namespace:=$drone_namespace \
     config:=config/platform_default.yaml"
 
-new_window 'state_estimator' "ros2 launch basic_state_estimator basic_state_estimator_launch.py \
-    namespace:=$drone_namespace \
-    odom_only:=true" 
+new_window 'state_estimator' "ros2 launch basic_state_estimator mocap_state_estimator_launch.py \
+    namespace:=$drone_namespace "
 
 new_window 'controller_manager' "ros2 launch controller_manager controller_manager_launch.py \
     namespace:=$drone_namespace \
