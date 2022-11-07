@@ -5,7 +5,7 @@ repositories:
 #----------------------------------------------------------------------------
   stack/messages/as2_msgs:
     type: git 
-    url: https://github.com/aerostack2-developers/as2_msgs.git
+    url: https://github.com/aerostack2/as2_msgs.git
     version: main
 
 #----------------------------------------------------------------------------
@@ -14,55 +14,49 @@ repositories:
 
   stack/core/as2_core:
     type: git 
-    url: https://github.com/aerostack2-developers/as2_core.git
-    version: main
-  
-  stack/core/basic_tf_tree_generator:
-    type: git 
-    url: https://github.com/aerostack2-developers/basic_tf_tree_generator.git
-    version: main
-
-  # stack/core/gps_utils:
-  #   type: git
-  #   url: https://github.com/aerostack2-developers/gps_utils.git
-  #   version: main
-
-#----------------------------------------------------------------------------
-# Handlers 
-#----------------------------------------------------------------------------
-
-  stack/core/actuator_command_handlers:
-    type: git 
-    url: https://github.com/aerostack2-developers/actuator_command_handlers.git
+    url: https://github.com/aerostack2/as2_core.git
     version: main
 
   stack/core/motion_reference_handlers:
     type: git 
-    url: https://github.com/aerostack2-developers/motion_reference_handlers.git
+    url: https://github.com/aerostack2/motion_reference_handlers.git
     version: main
+
+#----------------------------------------------------------------------------
+# State estimator
+#----------------------------------------------------------------------------
+  state_estimator/basic_state_estimator:
+    type: git
+    url: https://github.com/aerostack2/basic_state_estimator.git
+    version: 7-publish-global_ref_twist-in-baselink-frame
 
 #----------------------------------------------------------------------------
 # Motion_control
 #----------------------------------------------------------------------------
 
+  libs/pid_controller:
+    type: git
+    url: https://github.com/aerostack2/pid_controller.git
+    version: main
+
   stack/motion_control/controller_manager:
     type: git 
-    url: https://github.com/aerostack2-developers/controller_manager.git
+    url: https://github.com/aerostack2/controller_manager.git
     version: main
 
   stack/motion_control/plugins/controller_plugin_differential_flatness:
     type: git 
-    url: https://github.com/aerostack2-developers/controller_plugin_differential_flatness
+    url: https://github.com/aerostack2/controller_plugin_differential_flatness
     version: main
 
-  # stack/motion_control/plugins/controller_plugin_speed_controller:
-  #    type: git 
-  #    url: https://github.com/aerostack2-developers/controller_plugin_speed_controller
-  #    version: main
+  stack/motion_control/plugins/controller_plugin_speed_controller:
+    type: git 
+    url: https://github.com/aerostack2/controller_plugin_speed_controller
+    version: main
 
   stack/motion_control/trajectory_generator:
      type: git 
-     url: https://github.com/aerostack2-developers/trajectory_generator.git
+     url: https://github.com/aerostack2/trajectory_generator.git
      version: main
 
 
@@ -71,7 +65,7 @@ repositories:
 #----------------------------------------------------------------------------
   stack/user_interface/python_interface:
     type: git 
-    url: https://github.com/aerostack2-developers/python_interface.git
+    url: https://github.com/aerostack2/python_interface.git
     version: main
 
 
@@ -80,53 +74,53 @@ repositories:
 #----------------------------------------------------------------------------
   stack/behaviours/as2_basic_behaviours:
     type: git 
-    url: https://github.com/aerostack2-developers/as2_basic_behaviours.git
+    url: https://github.com/aerostack2/as2_basic_behaviours.git
     version: main
 
 # ---------- Takeoff ----------
 
   stack/behaviours/take_off/takeoff_behaviour:
     type: git 
-    url: https://github.com/aerostack2-developers/takeoff_behaviour.git
+    url: https://github.com/aerostack2/takeoff_behaviour.git
     version: main
 
   stack/behaviours/take_off/takeoff_plugins:
     type: git 
-    url: https://github.com/aerostack2-developers/takeoff_plugins.git
+    url: https://github.com/aerostack2/takeoff_plugins.git
     version: main
 
 # ---------- Land ----------
   stack/behaviours/land/land_behaviour:
     type: git 
-    url: https://github.com/aerostack2-developers/land_behaviour.git
+    url: https://github.com/aerostack2/land_behaviour.git
     version: main
 
   stack/behaviours/land/land_plugins:
     type: git 
-    url: https://github.com/aerostack2-developers/land_plugins.git
+    url: https://github.com/aerostack2/land_plugins.git
     version: main
 
 # ---------- Go To ----------
   stack/behaviours/go_to/goto_behaviour:
     type: git 
-    url: https://github.com/aerostack2-developers/goto_behaviour.git
+    url: https://github.com/aerostack2/goto_behaviour.git
     version: main
 
   stack/behaviours/go_to/goto_plugins:
     type: git 
-    url: https://github.com/aerostack2-developers/goto_plugins.git
+    url: https://github.com/aerostack2/goto_plugins.git
     version: main
  
 # ---------- Follow path ----------
   
   stack/behaviours/follow_path/follow_path_behaviour:
     type: git 
-    url: https://github.com/aerostack2-developers/follow_path_behaviour.git
+    url: https://github.com/aerostack2/follow_path_behaviour.git
     version: main
 
   stack/behaviours/follow_path/follow_path_plugins:
     type: git 
-    url: https://github.com/aerostack2-developers/follow_path_plugins.git
+    url: https://github.com/aerostack2/follow_path_plugins.git
     version: main
 
 #----------------------------------------------------------------------------
@@ -134,19 +128,9 @@ repositories:
 #----------------------------------------------------------------------------
   stack/hardware_interface/pixhawk_platform:
     type: git 
-    url: https://github.com/aerostack2-developers/pixhawk_platform.git
+    url: https://github.com/aerostack2/pixhawk_platform.git
     version: main
   
-  stack/hardware_interface/realsense_interface:
-    type: git 
-    url: https://github.com/aerostack2-developers/realsense_interface.git
-    version: main
-
-  stack/hardware_interface/aruco_gate_detector:
-    type: git 
-    url: https://github.com/aerostack2-developers/aruco_gate_detector.git
-    version: main
-    
   stack/hardware_interface/mocap_optitrack:
     type: git 
     url: https://github.com/ros-drivers/mocap_optitrack.git
@@ -157,7 +141,5 @@ repositories:
 #----------------------------------------------------------------------------
   thirdparty/px4_required_packages:
     type: git
-    url: https://github.com/aerostack2-developers/px4_required_packages.git
+    url: https://github.com/aerostack2/px4_required_packages.git
     version: main
-
-
