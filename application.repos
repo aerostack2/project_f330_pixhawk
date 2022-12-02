@@ -28,7 +28,7 @@ repositories:
   state_estimator/basic_state_estimator:
     type: git
     url: https://github.com/aerostack2/basic_state_estimator.git
-    version: 7-publish-global_ref_twist-in-baselink-frame
+    version: full_cleaning
 
 #----------------------------------------------------------------------------
 # Motion_control
