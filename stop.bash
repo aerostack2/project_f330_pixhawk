@@ -1,9 +1,8 @@
 #!/bin/bash
-SESSION=$USER
+tmux_exception="$1"
 
-sessions=$(tmux ls | awk '{print $1}' | sed "s/://g" | grep $SESSION)
-
-for sess in $sessions
-do
-    tmux kill-session -t $sess
-done
+if [[ $tmux_exception == "" ]]; then
+  tmux kill-server
+else
+  tmux ls | awk '{print $1}' | grep -v "^$tmux_exception:" | xargs -I % sh -c 'tmux kill-session -t %'
+fi
