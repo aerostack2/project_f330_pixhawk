@@ -1,0 +1,9 @@
+/**:
+  ros__parameters:
+    cmd_freq: 100.0  # Hz (default: 100.0)
+    info_freq: 10.0  # Hz (default: 10.0)
+    # mass: 0.82  # Kg
+    mass: 1.5 # Kg
+    max_thrust: 23.0  # N
+    min_thrust: 0.15  # N
+    control_modes_file: ""  # (default: config/control_modes.yaml)
