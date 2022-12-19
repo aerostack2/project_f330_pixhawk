@@ -1,0 +1,58 @@
+# reliability_override.yaml
+
+/drone0/actuator_command/pose:
+  reliability: best_effort
+  history: keep_all
+  depth: 5
+/drone0/actuator_command/thrust:
+  reliability: best_effort
+  history: keep_all
+  depth: 5
+/drone0/actuator_command/twist:
+  reliability: best_effort
+  history: keep_all
+  depth: 5
+/drone0/controller/info:
+  reliability: best_effort
+  history: keep_all
+  depth: 5
+/drone0/motion_reference/pose:
+  reliability: best_effort
+  history: keep_all
+  depth: 5
+/drone0/motion_reference/twist:
+  reliability: best_effort
+  history: keep_all
+  depth: 5
+/drone0/platform/info:
+  reliability: best_effort
+  history: keep_all
+  depth: 5
+/drone0/self_localization/pose:
+  reliability: best_effort
+  history: keep_all
+  depth: 5
+/drone0/self_localization/twist:
+  reliability: best_effort
+  history: keep_all
+  depth: 5
+/drone0/sensor_measurements/battery:
+  reliability: best_effort
+  history: keep_all
+  depth: 5
+/drone0/sensor_measurements/imu:
+  reliability: best_effort
+  history: keep_all
+  depth: 5
+/drone0/sensor_measurements/odom:
+  reliability: best_effort
+  history: keep_all
+  depth: 5
+/tf:
+  reliability: best_effort
+  history: keep_all
+  depth: 5
+/tf_static:
+  reliability: best_effort
+  history: keep_all
+  depth: 5

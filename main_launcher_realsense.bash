@@ -8,7 +8,7 @@ DIR_SCRIPT="${0%/*}"
 n=0
 drone_namespace="drone"
 while [ $n -lt $num_drones ]; do
-    ${DIR_SCRIPT}/as2_launch.bash $drone_namespace$n true
+    ${DIR_SCRIPT}/as2_launch.bash $drone_namespace$n false
     n=$(($n + 1))
 done
 

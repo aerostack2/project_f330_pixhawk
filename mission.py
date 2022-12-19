@@ -1,68 +1,96 @@
 #!/bin/python3
 
+import os
 from time import sleep
 import rclpy
 from python_interface.drone_interface import DroneInterface
-from as2_msgs.msg import TrajectoryWaypoints
-
-drone_id = "drone0"
+from as2_msgs.msg import YawMode
 
 
-def drone_run(drone_interface):
+def drone_run(drone_interface: DroneInterface):
 
-    dim_x = 2.0
-    dim_y = 2.0
+    speed = 2.0
+    takeoff_height = 1.0
     height = 2.0
 
+    sleep_time = 2.0
+    yaw_mode = YawMode()
+    yaw_mode.mode = YawMode.PATH_FACING
+
+    dim = 2.0
     path = [
-        [dim_x, -dim_y, height],
-        [dim_x,   0.0,  height],
-        [dim_x,  dim_y, height],
-        [0.0,    0.0, height]]
+        [dim, dim, height],
+        [dim, -dim, height],
+        [-dim, dim, height],
+        [-dim, -dim, height],
+        [0.0, 0.0, takeoff_height],
+    ]
 
-    takeoff_height = 2.0
-    takeoff_speed = 0.5
-    speed = 1.0
-    yaw_mode = TrajectoryWaypoints.PATH_FACING
+    print("Start mission")
 
-    print(f"Start mission {drone_id}")
-
+    ##### ARM OFFBOARD #####
     drone_interface.offboard()
-    print("OFFBOARD")
-
     drone_interface.arm()
-    print("ARMED")
 
-    sleep(1.0)
+    ##### TAKE OFF #####
+    print("Take Off")
+    drone_interface.takeoff(takeoff_height, speed=1.0)
+    print("Take Off done")
+    sleep(sleep_time)
 
-    print(f"Take Off {drone_id}")
-    drone_interface.follow_path(
-        [[0.0, 0.0, takeoff_height*0.5], [0.0, 0.0, takeoff_height]], speed=takeoff_speed, yaw_mode=yaw_mode)
-    print(f"Take Off {drone_id} done")
+    ##### FOLLOW PATH #####
+    sleep(sleep_time)
+    print(f"Follow path with path facing: [{path}]")
+    drone_interface.follow_path.follow_path_with_path_facing(path, speed)
+    print("Follow path done")
 
-    print("Follow path")
-    drone_interface.follow_path(
-        path,
-        speed=speed,
-        yaw_mode=yaw_mode)
-    print("Path done")
+    sleep(sleep_time)
+    print(f"Follow path with keep yaw: [{path}]")
+    drone_interface.follow_path.follow_path_with_keep_yaw(path, speed)
+    print("Follow path done")
 
-    sleep(1.0)
+    sleep(sleep_time)
+    print(f"Follow path with angle {-1.57}: [{path}]")
+    drone_interface.follow_path.follow_path_with_yaw(path, speed, angle=-1.57)
+    print("Follow path done")
 
-    print("Land")
-    drone_interface.follow_path(
-        [[0.0, 0.0, takeoff_height*0.5], [0.0, 0.0, 0.0]], speed=takeoff_speed, yaw_mode=yaw_mode)
+    ##### GOTO #####
+    for goal in path:
+        print(f"Go to with path facing {goal}")
+        drone_interface.goto.go_to_point_path_facing(goal, speed=speed)
+        print("Go to done")
+    sleep(sleep_time)
+
+    for goal in path:
+        print(f"Go to with keep yaw {goal}")
+        drone_interface.goto.go_to_point(goal, speed=speed)
+        print("Go to done")
+    sleep(sleep_time)
+
+    for goal in path:
+        print(f"Go to with angle {-1.57}: {goal}")
+        drone_interface.goto.go_to_point_with_yaw(goal, speed=speed, angle=-1.57)
+        print("Go to done")
+    sleep(sleep_time)
+
+    ##### LAND #####
+    print("Landing")
+    drone_interface.land(speed=0.5)
     print("Land done")
 
-    print("Clean exit")
+    drone_interface.disarm()
 
 
 if __name__ == '__main__':
     rclpy.init()
-    n_uavs = DroneInterface(drone_id, verbose=False)
+    # Get environment variable AEROSTACK2_SIMULATION_DRONE_ID
+    uav_name = "drone0"
+    uav = DroneInterface(uav_name, verbose=False, use_sim_time=True)
 
-    drone_run(n_uavs)
+    drone_run(uav)
 
-    n_uavs.shutdown()
+    uav.shutdown()
     rclpy.shutdown()
+
+    print("Clean exit")
     exit(0)
